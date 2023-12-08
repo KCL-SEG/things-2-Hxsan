@@ -6,6 +6,18 @@
   <h1>
     Things
   </h1>
-  <p>Some stuff about things goes here.</p>
+  <h2>Create a Thing</h2>
+  <form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Thing</button>
+  </form>
+
+  <h2>Existing Things</h2>
+  <ul>
+    {% for thing in things %}
+      <li>{{ thing.name }} - {{ thing.description }} - {{ thing.quantity }}</li>
+    {% endfor %}
+  </ul>
 </body>
 </html>
